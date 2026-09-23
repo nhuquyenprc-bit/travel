@@ -1,0 +1,522 @@
+[korea travel.html](https://github.com/user-attachments/files/32547822/korea.travel.html)[Uploading k<!DOCTYPE html>
+<html lang="ko" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Discover Korea - Seoul & Busan Travel Guide</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700;900&family=Playfair+Display:ital,wght@0,700;1,400&display=swap" rel="stylesheet">
+    
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        korea: {
+                            red: '#C6363C',
+                            blue: '#0F4C81',
+                            gold: '#D4AF37',
+                            dark: '#111827',
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Noto Sans KR', 'sans-serif'],
+                        serif: ['Playfair Display', 'serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        .custom-scrollbar::-webkit-scrollbar {
+            width: 6px;
+            height: 6px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-track {
+            background: #f1f5f9;
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb {
+            background: #0F4C81;
+            border-radius: 4px;
+        }
+        .bg-hero-seoul {
+            background-image: linear-gradient(rgba(15, 23, 42, 0.5), rgba(15, 23, 42, 0.7)), url('https://images.unsplash.com/photo-1538485399081-7191377e8241?auto=format&fit=crop&w=1920&q=80');
+        }
+        .bg-hero-busan {
+            background-image: linear-gradient(rgba(15, 23, 42, 0.5), rgba(15, 23, 42, 0.7)), url('https://images.unsplash.com/photo-1578637387939-43c525550085?auto=format&fit=crop&w=1920&q=80');
+        }
+    </style>
+</head>
+<body class="bg-slate-50 text-slate-800 font-sans antialiased selection:bg-korea-red selection:text-white">
+
+    <nav class="fixed top-0 left-0 right-0 z-50 bg-white/90 backdrop-blur-md shadow-sm border-b border-slate-100 transition-all">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-20">
+                <!-- Logo -->
+                <a href="#" class="flex items-center gap-3 group">
+                    <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-korea-blue to-korea-red flex items-center justify-center text-white font-bold text-lg shadow-md group-hover:scale-105 transition-transform">
+                        KR
+                    </div>
+                    <div>
+                        <span class="font-serif text-2xl font-bold tracking-tight text-slate-900">K-Wanderlust</span>
+                        <span class="block text-[10px] text-slate-400 font-semibold tracking-widest uppercase -mt-1">Seoul & Busan Guide</span>
+                    </div>
+                </a>
+
+                <!-- Nav Links -->
+                <div class="hidden md:flex items-center gap-8 text-sm font-semibold text-slate-600">
+                    <a href="#cities" class="hover:text-korea-blue transition-colors">주요 도시 (Cities)</a>
+                    <a href="#spots" class="hover:text-korea-blue transition-colors">명소 (Attractions)</a>
+                    <a href="#food" class="hover:text-korea-blue transition-colors">K-Food 미식 코스</a>
+                    <a href="#itinerary" class="hover:text-korea-blue transition-colors">맞춤 일정 플래너</a>
+                    <a href="#transport" class="hover:text-korea-blue transition-colors">교통 가이드</a>
+                </div>
+
+                <!-- City Switch CTA -->
+                <div class="hidden md:flex items-center gap-3">
+                    <button onclick="setCityView('seoul')" id="nav-btn-seoul" class="px-4 py-2 rounded-full text-xs font-bold transition-all bg-korea-blue text-white shadow-md">
+                        🏙️ 서울 (Seoul)
+                    </button>
+                    <button onclick="setCityView('busan')" id="nav-btn-busan" class="px-4 py-2 rounded-full text-xs font-bold transition-all bg-slate-100 text-slate-600 hover:bg-slate-200">
+                        🌊 부산 (Busan)
+                    </button>
+                </div>
+
+                <!-- Mobile Menu Icon -->
+                <button onclick="toggleMobileMenu()" class="md:hidden p-2 text-slate-700 text-2xl">
+                    <i class="fa-solid fa-bars"></i>
+                </button>
+            </div>
+        </div>
+
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="hidden md:hidden bg-white border-b border-slate-200 px-6 py-4 space-y-3">
+            <a href="#cities" onclick="toggleMobileMenu()" class="block py-2 text-slate-700 font-medium">주요 도시 (Cities)</a>
+            <a href="#spots" onclick="toggleMobileMenu()" class="block py-2 text-slate-700 font-medium">명소 (Attractions)</a>
+            <a href="#food" onclick="toggleMobileMenu()" class="block py-2 text-slate-700 font-medium">K-Food 미식 코스</a>
+            <a href="#itinerary" onclick="toggleMobileMenu()" class="block py-2 text-slate-700 font-medium">일정 플래너</a>
+            <a href="#transport" onclick="toggleMobileMenu()" class="block py-2 text-slate-700 font-medium">교통 가이드</a>
+            <div class="pt-3 flex gap-2">
+                <button onclick="setCityView('seoul'); toggleMobileMenu()" class="w-1/2 py-2.5 bg-korea-blue text-white rounded-xl text-xs font-bold">서울 서울 (Seoul)</button>
+                <button onclick="setCityView('busan'); toggleMobileMenu()" class="w-1/2 py-2.5 bg-korea-red text-white rounded-xl text-xs font-bold">부산 (Busan)</button>
+            </div>
+        </div>
+    </nav>
+
+    <section id="hero" class="relative min-h-screen flex items-center justify-center pt-20 bg-cover bg-center transition-all duration-700 bg-hero-seoul text-white px-4 sm:px-6">
+        <div class="max-w-4xl mx-auto text-center z-10 space-y-6">
+            <span id="hero-badge" class="inline-block px-4 py-1.5 rounded-full bg-white/20 backdrop-blur-md text-xs sm:text-sm font-semibold tracking-wider uppercase border border-white/30 text-amber-300">
+                ✨ Dynamic Korea Travel Guide
+            </span>
+            <h1 id="hero-title" class="font-serif text-4xl sm:text-6xl lg:text-7xl font-extrabold tracking-tight leading-tight">
+                전통과 현대가 어우러진<br/><span class="text-transparent bg-clip-text bg-gradient-to-r from-amber-200 via-rose-300 to-sky-300">매혹적인 도시 서울</span>
+            </h1>
+            <p id="hero-subtitle" class="text-slate-200 text-base sm:text-xl font-light max-w-2xl mx-auto leading-relaxed">
+                N서울타워, 경복궁의 전통 한옥 마을부터 야경과 한강의 낭만까지, 대한민국 수도의 다채로운 매력을 탐험해보세요.
+            </p>
+
+            <!-- Interactive City Selector Switcher -->
+            <div class="pt-4 flex justify-center gap-4">
+                <button onclick="setCityView('seoul')" class="px-8 py-3.5 rounded-full font-bold text-sm bg-korea-blue hover:bg-blue-900 text-white shadow-xl shadow-blue-900/40 transition-all flex items-center gap-2 transform hover:-translate-y-0.5">
+                    <i class="fa-solid fa-city"></i> 서울 둘러보기 (Seoul)
+                </button>
+                <button onclick="setCityView('busan')" class="px-8 py-3.5 rounded-full font-bold text-sm bg-korea-red hover:bg-rose-800 text-white shadow-xl shadow-red-900/40 transition-all flex items-center gap-2 transform hover:-translate-y-0.5">
+                    <i class="fa-solid fa-water"></i> 부산 둘러보기 (Busan)
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <section id="cities" class="py-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center max-w-2xl mx-auto mb-16">
+            <span class="text-korea-blue font-bold uppercase tracking-widest text-xs">Two Iconic Destinations</span>
+            <h2 class="font-serif text-3xl sm:text-4xl font-bold text-slate-900 mt-1">대표 여행지 비교 (Seoul vs Busan)</h2>
+            <p class="text-slate-600 mt-3 text-sm">트렌디한 대도시 서울과 탁 트인 바다 감성의 해양도시 부산의 독특한 스토리를 즐겨보세요.</p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+            <!-- Seoul Banner Card -->
+            <div onclick="setCityView('seoul')" class="group cursor-pointer relative rounded-3xl overflow-hidden shadow-xl h-96 transition-transform hover:-translate-y-1">
+                <img src="https://images.unsplash.com/photo-1517154421773-0529f29ea451?auto=format&fit=crop&w=800&q=80" alt="Seoul" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700">
+                <div class="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-900/40 to-transparent p-8 flex flex-col justify-end text-white">
+                    <span class="text-amber-400 font-bold text-xs uppercase tracking-widest">Capital City</span>
+                    <h3 class="font-serif text-3xl font-bold mt-1">서울 (SEOUL)</h3>
+                    <p class="text-slate-300 text-xs sm:text-sm mt-2 line-clamp-2">K-Culture, 쇼핑, 역사적인 궁궐과 화려한 도심 야경이 어우러진 꿈의 도시</p>
+                    <div class="mt-4 flex items-center gap-2 text-xs font-bold text-sky-300">
+                        <span>서울 코스 보기</span> <i class="fa-solid fa-arrow-right"></i>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Busan Banner Card -->
+            <div onclick="setCityView('busan')" class="group cursor-pointer relative rounded-3xl overflow-hidden shadow-xl h-96 transition-transform hover:-translate-y-1">
+                <img src="https://images.unsplash.com/photo-1578637387939-43c525550085?auto=format&fit=crop&w=800&q=80" alt="Busan" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700">
+                <div class="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-900/40 to-transparent p-8 flex flex-col justify-end text-white">
+                    <span class="text-rose-400 font-bold text-xs uppercase tracking-widest">Ocean & Coastal City</span>
+                    <h3 class="font-serif text-3xl font-bold mt-1">부산 (BUSAN)</h3>
+                    <p class="text-slate-300 text-xs sm:text-sm mt-2 line-clamp-2">해운대의 푸른 바다, 감천문화마을, 신선한 해산물과 해변 열차의 낭만</p>
+                    <div class="mt-4 flex items-center gap-2 text-xs font-bold text-rose-300">
+                        <span>부산 코스 보기</span> <i class="fa-solid fa-arrow-right"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="spots" class="py-20 bg-slate-100/80 border-y border-slate-200/80">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-6">
+                <div>
+                    <span class="text-korea-blue font-bold uppercase tracking-widest text-xs" id="spots-subtitle">Top Highlights</span>
+                    <h2 class="font-serif text-3xl sm:text-4xl font-bold text-slate-900 mt-1" id="spots-title">서울의 대표 명소 (Seoul Spots)</h2>
+                </div>
+
+                <!-- Toggle Selector -->
+                <div class="flex bg-white p-1.5 rounded-full border border-slate-200 shadow-sm">
+                    <button onclick="setCityView('seoul')" id="tab-seoul" class="px-5 py-2 rounded-full text-xs font-bold transition-all bg-korea-blue text-white shadow">
+                        서울 명소
+                    </button>
+                    <button onclick="setCityView('busan')" id="tab-busan" class="px-5 py-2 rounded-full text-xs font-bold transition-all text-slate-600 hover:text-slate-900">
+                        부산 명소
+                    </button>
+                </div>
+            </div>
+
+            <!-- Dynamic Attraction Cards -->
+            <div id="spots-container" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Rendered by JS -->
+            </div>
+        </div>
+    </section>
+
+    <section id="food" class="py-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center max-w-2xl mx-auto mb-16">
+            <span class="text-korea-red font-bold uppercase tracking-widest text-xs">Authentic K-Food</span>
+            <h2 class="font-serif text-3xl sm:text-4xl font-bold text-slate-900 mt-1">지역 미식 가이드 (Food Experience)</h2>
+            <p class="text-slate-600 mt-3 text-sm">서울과 부산에서 꼭 맛봐야 하는 대표적인 향토 음식과 대표 맛집 거리</p>
+        </div>
+
+        <div id="food-container" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+            <!-- Food items populated by JS -->
+        </div>
+    </section>
+
+    <section id="itinerary" class="py-20 bg-slate-900 text-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+                
+                <!-- Left Info & Customizer controls -->
+                <div class="lg:col-span-5 space-y-6">
+                    <span class="px-3.5 py-1.5 rounded-full bg-white/10 text-amber-300 border border-white/20 text-xs font-bold tracking-widest uppercase">
+                        AI Trip Recommendation
+                    </span>
+                    <h2 class="font-serif text-3xl sm:text-4xl font-bold leading-tight">나만의 맞춤 여행 코스 추천</h2>
+                    <p class="text-slate-300 text-sm leading-relaxed">
+                        여행 기간과 선호하는 스타일에 맞춰 서울과 부산을 아우르는 알찬 코스를 실시간으로 구성해보세요.
+                    </p>
+
+                    <div class="space-y-4 pt-2">
+                        <div>
+                            <label class="block text-xs font-bold uppercase text-slate-400 mb-2">여행 대상 도시 (Target City)</label>
+                            <select id="plan-city" onchange="generateItinerary()" class="w-full bg-slate-800 border border-slate-700 rounded-xl px-4 py-3 text-sm font-semibold focus:outline-none focus:border-korea-blue">
+                                <option value="seoul">서울 3일 완벽 코스 (Seoul 3 Days)</option>
+                                <option value="busan">부산 2일 해변 코스 (Busan 2 Days)</option>
+                                <option value="combined">서울 + 부산 5일 통합 코스 (Seoul & Busan 5 Days)</option>
+                            </select>
+                        </div>
+
+                        <div>
+                            <label class="block text-xs font-bold uppercase text-slate-400 mb-2">여행 테마 (Travel Theme)</label>
+                            <div class="grid grid-cols-3 gap-3">
+                                <button onclick="setPlanTheme('culture', this)" class="theme-btn border border-korea-blue bg-blue-900/30 text-xs py-2.5 rounded-xl font-bold">전통 & 문화</button>
+                                <button onclick="setPlanTheme('nature', this)" class="theme-btn border border-slate-700 bg-slate-800 text-xs py-2.5 rounded-xl font-bold">힐링 & 자연</button>
+                                <button onclick="setPlanTheme('foodie', this)" class="theme-btn border border-slate-700 bg-slate-800 text-xs py-2.5 rounded-xl font-bold">K-미식 투어</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Right Display Itinerary Result -->
+                <div class="lg:col-span-7 bg-slate-800/90 rounded-3xl p-6 sm:p-8 border border-slate-700/80 shadow-2xl space-y-6">
+                    <div class="flex items-center justify-between pb-4 border-b border-slate-700">
+                        <div>
+                            <h3 id="plan-result-title" class="font-bold text-lg text-white">서울 3일 대표 일정</h3>
+                            <span id="plan-result-subtitle" class="text-xs text-amber-400">전통 궁궐과 도심 감성 투어</span>
+                        </div>
+                        <button onclick="copyItineraryText()" class="px-4 py-2 bg-slate-700 hover:bg-slate-600 rounded-xl text-xs font-semibold flex items-center gap-2 transition-colors">
+                            <i class="fa-regular fa-copy"></i> 일정 복사
+                        </button>
+                    </div>
+
+                    <div id="plan-timeline" class="space-y-6 max-h-[400px] overflow-y-auto custom-scrollbar pr-2">
+                        <!-- Timeline Items Javascript Populated -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="transport" class="py-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center max-w-2xl mx-auto mb-16">
+            <span class="text-korea-blue font-bold uppercase tracking-widest text-xs">Easy Transit</span>
+            <h2 class="font-serif text-3xl sm:text-4xl font-bold text-slate-900 mt-1">서울 ↔ 부산 교통 가이드</h2>
+            <p class="text-slate-600 mt-3 text-sm">대한민국 최고의 두 도시를 가장 빠르고 편리하게 이동하는 핵심 팁</p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <!-- KTX Highspeed Train -->
+            <div class="bg-white p-8 rounded-3xl border border-slate-200/80 shadow-sm hover:shadow-md transition-shadow">
+                <div class="w-12 h-12 rounded-2xl bg-blue-100 text-korea-blue flex items-center justify-center text-xl font-bold mb-6">
+                    <i class="fa-solid fa-train text-2xl"></i>
+                </div>
+                <h3 class="font-bold text-lg text-slate-900 mb-2">KTX 초고속 열차</h3>
+                <p class="text-slate-600 text-xs leading-relaxed mb-4">서울역에서 부산역까지 약 2시간 30분 소요. 편리함과 정시성을 갖춘 가장 대표적인 이동 수단입니다.</p>
+                <div class="border-t border-slate-100 pt-3 flex justify-between text-xs font-bold text-slate-500">
+                    <span>소요시간: ~2시간 30분</span>
+                    <span class="text-korea-blue">편도 약 60,000원</span>
+                </div>
+            </div>
+
+            <!-- T-Money Card -->
+            <div class="bg-white p-8 rounded-3xl border border-slate-200/80 shadow-sm hover:shadow-md transition-shadow">
+                <div class="w-12 h-12 rounded-2xl bg-amber-100 text-amber-600 flex items-center justify-center text-xl font-bold mb-6">
+                    <i class="fa-solid fa-credit-card text-2xl"></i>
+                </div>
+                <h3 class="font-bold text-lg text-slate-900 mb-2">티머니 (T-Money) 교통카드</h3>
+                <p class="text-slate-600 text-xs leading-relaxed mb-4">서울 지하철, 버스, 부산 대중교통 및 편의점 결제까지 단 한 장으로 해결 가능한 필수 카드입니다.</p>
+                <div class="border-t border-slate-100 pt-3 flex justify-between text-xs font-bold text-slate-500">
+                    <span>구매처: 편의점, 역</span>
+                    <span class="text-amber-600">환승 할인 혜택</span>
+                </div>
+            </div>
+
+            <!-- SRT Express Train -->
+            <div class="bg-white p-8 rounded-3xl border border-slate-200/80 shadow-sm hover:shadow-md transition-shadow">
+                <div class="w-12 h-12 rounded-2xl bg-rose-100 text-korea-red flex items-center justify-center text-xl font-bold mb-6">
+                    <i class="fa-solid fa-bolt text-2xl"></i>
+                </div>
+                <h3 class="font-bold text-lg text-slate-900 mb-2">SRT 수서고속철도</h3>
+                <p class="text-slate-600 text-xs leading-relaxed mb-4">강남 수서역 출발 - 부산역 도착. 강남 및 서울 동남권 출발 시 더욱 빠른 고속열차 옵션입니다.</p>
+                <div class="border-t border-slate-100 pt-3 flex justify-between text-xs font-bold text-slate-500">
+                    <span>소요시간: ~2시간 20분</span>
+                    <span class="text-korea-red">편도 약 52,000원</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="bg-slate-950 text-slate-400 py-12 border-t border-slate-800 text-xs">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row justify-between items-center gap-6">
+            <div class="flex items-center gap-3">
+                <div class="w-8 h-8 rounded-lg bg-korea-blue flex items-center justify-center text-white font-bold">KR</div>
+                <span class="font-serif text-lg font-bold text-white">K-Wanderlust Guide</span>
+            </div>
+            <p>&copy; 2026 Korea Travel & Tourism Guide. All rights reserved.</p>
+            <div class="flex gap-4 text-slate-400">
+                <a href="#hero" class="hover:text-white">맨 위로 이동 ↑</a>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // State
+        let currentCity = 'seoul';
+        let currentTheme = 'culture';
+
+        // City Content Data
+        const cityInfo = {
+            seoul: {
+                heroTitle: '전통과 현대가 어우러진<br/><span class="text-transparent bg-clip-text bg-gradient-to-r from-amber-200 via-rose-300 to-sky-300">매혹적인 도시 서울</span>',
+                heroSubtitle: 'N서울타워, 경복궁의 전통 한옥 마을부터 야경과 한강의 낭만까지, 대한민국 수도의 다채로운 매력을 탐험해보세요.',
+                badge: '✨ Capital City Explorer',
+                heroClass: 'bg-hero-seoul',
+                spotsTitle: '서울 대표 추천 명소 (Seoul Spots)',
+                spotsSubtitle: 'Historical & Modern Seoul'
+            },
+            busan: {
+                heroTitle: '푸른 바다와 산이 만든<br/><span class="text-transparent bg-clip-text bg-gradient-to-r from-teal-200 via-sky-300 to-amber-200">역동적인 해양도시 부산</span>',
+                heroSubtitle: '해운대와 광안리의 활기찬 해변, 감천문화마을의 알록달록 골목길, 자갈치 시장의 생동감을 직접 경험하세요.',
+                badge: '🌊 Ocean & Coastal Explorer',
+                heroClass: 'bg-hero-busan',
+                spotsTitle: '부산 대표 추천 명소 (Busan Spots)',
+                spotsSubtitle: 'Seaside & Heritage Busan'
+            }
+        };
+
+        const spotsData = {
+            seoul: [
+                { title: '경복궁 & 북촌한옥마을', tag: '역사/문화', desc: '조선시대 으뜸 궁궐 경복궁과 고즈넉한 한옥들이 잘 보존된 옛 골목길.', img: 'https://images.unsplash.com/photo-1548115184-bc6544d06a58?auto=format&fit=crop&w=600&q=80' },
+                { title: 'N서울타워 (남산)', tag: '랜드마크/야경', desc: '서울 파노라마 전경과 로맨틱한 자물쇠 전망대를 감상할 수 있는 명소.', img: 'https://images.unsplash.com/photo-1538485399081-7191377e8241?auto=format&fit=crop&w=600&q=80' },
+                { title: '한강 공원 (여의도/반포)', tag: '휴식/피크닉', desc: '한강변을 따라 치맥 피크닉과 달빛무지개 분수 쇼를 즐기는 서울 사람들의 휴식처.', img: 'https://images.unsplash.com/photo-1517154421773-0529f29ea451?auto=format&fit=crop&w=600&q=80' },
+                { title: 'DDP (동대문디자인플라자)', tag: '건축/디자인', desc: '세계적인 건축가 자하 하디드가 설계한 미래지향적 복합 문화 공간.', img: 'https://images.unsplash.com/photo-1508009603885-50cf7c579365?auto=format&fit=crop&w=600&q=80' },
+                { title: '명동 & 성수동 골목', tag: '트렌드/쇼핑', desc: '팝업스토어와 힙한 카페가 즐비한 성수동과 K-뷰티 쇼핑의 중심 명동.', img: 'https://images.unsplash.com/photo-1518548419970-58e3b4079ab2?auto=format&fit=crop&w=600&q=80' },
+                { title: '롯데월드타워 (SEOUL SKY)', tag: '전망대', desc: '세계 5위 높이의 555m 모던 초고층 빌딩에서 내려다보는 서울의 전경.', img: 'https://images.unsplash.com/photo-1538485399081-7191377e8241?auto=format&fit=crop&w=600&q=80' }
+            ],
+            busan: [
+                { title: '해운대 해수욕장 & 캡슐열차', tag: '해변/액티비티', desc: '대한민국 대표 해변과 청사포를 잇는 감성적인 해변 열차 산책.', img: 'https://images.unsplash.com/photo-1578637387939-43c525550085?auto=format&fit=crop&w=600&q=80' },
+                { title: '감천문화마을', tag: '골목/예술', desc: '계단식 주택과 알록달록 벽화, 어린왕자 포토존이 매력적인 마을.', img: 'https://images.unsplash.com/photo-1583225214464-9296029427aa?auto=format&fit=crop&w=600&q=80' },
+                { title: '광안리 해수욕장 & 광안대교', tag: '야경/드론쇼', desc: '광안대교 LED 조명과 매주 주말 펼쳐지는 환상적인 드론 라이트 쇼.', img: 'https://images.unsplash.com/photo-1578637387939-43c525550085?auto=format&fit=crop&w=600&q=80' },
+                { title: '해동용궁사', tag: '사찰/풍경', desc: '파도가 부서지는 바위 절벽 위에 지어진 한국에서 가장 아름다운 사찰.', img: 'https://images.unsplash.com/photo-1548115184-bc6544d06a58?auto=format&fit=crop&w=600&q=80' },
+                { title: '자갈치 시장 & BIFF 광장', tag: '전통시장/먹거리', desc: '생동감 넘치는 국내 최대 수산시장과 씨앗호떡이 유명한 명소.', img: 'https://images.unsplash.com/photo-1503899036084-c55cdd92da26?auto=format&fit=crop&w=600&q=80' },
+                { title: '태종대 유원지', tag: '자연 절경', desc: '깎아지른 해안 절벽과 탁 트인 남해 바다의 절경을 감상하는 등대 산책로.', img: 'https://images.unsplash.com/photo-1517411032315-54ef2cb783bb?auto=format&fit=crop&w=600&q=80' }
+            ]
+        };
+
+        const foodData = [
+            { city: '서울', title: '광장시장 마약김밥 & 육회', desc: '전통시장의 열기와 함께 맛보는 한국 대표 스트리트 푸드.', img: 'https://images.unsplash.com/photo-1553163147-622ab57be1c7?auto=format&fit=crop&w=500&q=80' },
+            { city: '서울', title: '신당동 떡볶이 & 삼계탕', desc: '매콤달콤한 떡볶이 골목과 몸보신에 좋은 진한 삼계탕.', img: 'https://images.unsplash.com/photo-1498654896293-37aacf113fd9?auto=format&fit=crop&w=500&q=80' },
+            { city: '부산', title: '돼지국밥', desc: '진하게 우려낸 국물과 부드러운 돼지고기가 어우러진 부산 소울푸드.', img: 'https://images.unsplash.com/photo-1569718212165-3a8278d5f624?auto=format&fit=crop&w=500&q=80' },
+            { city: '부산', title: '부산 밀면 & 씨앗호떡', desc: '살얼음 띄운 시원한 밀면과 바삭하고 고소한 해운대 씨앗호떡.', img: 'https://images.unsplash.com/photo-1563245372-f21724e3856d?auto=format&fit=crop&w=500&q=80' }
+        ];
+
+        // Switch City View
+        function setCityView(city) {
+            currentCity = city;
+            const heroSection = document.getElementById('hero');
+            const data = cityInfo[city];
+
+            // Change Hero Styles & Text
+            heroSection.className = `relative min-h-screen flex items-center justify-center pt-20 bg-cover bg-center transition-all duration-700 text-white px-4 sm:px-6 ${data.heroClass}`;
+            document.getElementById('hero-title').innerHTML = data.heroTitle;
+            document.getElementById('hero-subtitle').textContent = data.heroSubtitle;
+            document.getElementById('hero-badge').textContent = data.badge;
+
+            // Change Spots Header
+            document.getElementById('spots-title').textContent = data.spotsTitle;
+            document.getElementById('spots-subtitle').textContent = data.spotsSubtitle;
+
+            // Update Tab UI
+            const tabSeoul = document.getElementById('tab-seoul');
+            const tabBusan = document.getElementById('tab-busan');
+            const navSeoul = document.getElementById('nav-btn-seoul');
+            const navBusan = document.getElementById('nav-btn-busan');
+
+            if (city === 'seoul') {
+                tabSeoul.className = 'px-5 py-2 rounded-full text-xs font-bold transition-all bg-korea-blue text-white shadow';
+                tabBusan.className = 'px-5 py-2 rounded-full text-xs font-bold transition-all text-slate-600 hover:text-slate-900';
+                navSeoul.className = 'px-4 py-2 rounded-full text-xs font-bold transition-all bg-korea-blue text-white shadow-md';
+                navBusan.className = 'px-4 py-2 rounded-full text-xs font-bold transition-all bg-slate-100 text-slate-600 hover:bg-slate-200';
+            } else {
+                tabBusan.className = 'px-5 py-2 rounded-full text-xs font-bold transition-all bg-korea-red text-white shadow';
+                tabSeoul.className = 'px-5 py-2 rounded-full text-xs font-bold transition-all text-slate-600 hover:text-slate-900';
+                navBusan.className = 'px-4 py-2 rounded-full text-xs font-bold transition-all bg-korea-red text-white shadow-md';
+                navSeoul.className = 'px-4 py-2 rounded-full text-xs font-bold transition-all bg-slate-100 text-slate-600 hover:bg-slate-200';
+            }
+
+            renderSpots(city);
+        }
+
+        // Render Spots
+        function renderSpots(city) {
+            const container = document.getElementById('spots-container');
+            const items = spotsData[city];
+
+            container.innerHTML = items.map(spot => `
+                <div class="bg-white rounded-3xl overflow-hidden border border-slate-200/80 shadow-sm hover:shadow-xl transition-all duration-300 group">
+                    <div class="relative h-52 overflow-hidden">
+                        <img src="${spot.img}" alt="${spot.title}" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
+                        <span class="absolute top-4 left-4 bg-slate-900/80 backdrop-blur-md text-amber-300 text-[11px] font-bold px-3 py-1 rounded-full">
+                            ${spot.tag}
+                        </span>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="font-bold text-slate-900 text-lg group-hover:text-korea-blue transition-colors">${spot.title}</h3>
+                        <p class="text-slate-600 text-xs sm:text-sm mt-2 leading-relaxed">${spot.desc}</p>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        // Render Food Cards
+        function renderFood() {
+            const container = document.getElementById('food-container');
+            container.innerHTML = foodData.map(item => `
+                <div class="bg-white rounded-2xl p-4 border border-slate-200/70 shadow-sm hover:shadow-md transition-shadow">
+                    <img src="${item.img}" class="w-full h-40 object-cover rounded-xl mb-4">
+                    <span class="text-[10px] font-bold uppercase tracking-wider px-2.5 py-1 bg-slate-100 text-slate-600 rounded-md">${item.city}</span>
+                    <h4 class="font-bold text-slate-900 text-base mt-2">${item.title}</h4>
+                    <p class="text-slate-500 text-xs mt-1 leading-relaxed">${item.desc}</p>
+                </div>
+            `).join('');
+        }
+
+        // Itinerary Planner Handler
+        function setPlanTheme(theme, btn) {
+            currentTheme = theme;
+            document.querySelectorAll('.theme-btn').forEach(b => {
+                b.className = 'theme-btn border border-slate-700 bg-slate-800 text-xs py-2.5 rounded-xl font-bold';
+            });
+            btn.className = 'theme-btn border border-korea-blue bg-blue-900/40 text-xs py-2.5 rounded-xl font-bold text-sky-300';
+            generateItinerary();
+        }
+
+        function generateItinerary() {
+            const cityOption = document.getElementById('plan-city').value;
+            const timelineContainer = document.getElementById('plan-timeline');
+            let title = '';
+            let subtitle = '';
+            let items = [];
+
+            if (cityOption === 'seoul') {
+                title = '서울 3일 대표 감성 일정';
+                subtitle = `테마: ${currentTheme === 'culture' ? '전통 & 역사' : currentTheme === 'nature' ? '한강 & 자연 힐링' : 'K-푸드 & 성수 핫플'}`;
+                items = [
+                    { day: 'Day 1', activity: '경복궁 한복 체험 ➔ 북촌한옥마을 산책 ➔ 삼청동 카페거리' },
+                    { day: 'Day 2', activity: '성수동 팝업스토어 탐방 ➔ N서울타워 남산 야경 감상' },
+                    { day: 'Day 3', activity: '광장시장 먹거리 투어 ➔ 여의도 한강공원 피크닉 및 치맥' }
+                ];
+            } else if (cityOption === 'busan') {
+                title = '부산 2일 해변 로드 일정';
+                subtitle = `테마: ${currentTheme === 'culture' ? '문화마을 & 사찰' : currentTheme === 'nature' ? '해운대 & 바다 힐링' : '자갈치 시장 & 해산물'}`;
+                items = [
+                    { day: 'Day 1', activity: '해운대 해수욕장 ➔ 블루라인파크 스카이캡슐 ➔ 광안리 드론쇼' },
+                    { day: 'Day 2', activity: '감천문화마을 산책 ➔ 자갈치시장 돼지국밥 ➔ 태종대 산책' }
+                ];
+            } else {
+                title = '서울 + 부산 5일 대한민국 골든 코스';
+                subtitle = 'KTX로 연결되는 대표 대도시 완벽 일주';
+                items = [
+                    { day: 'Day 1', activity: '[서울] 경복궁 & 북촌 한옥 마을 탐방' },
+                    { day: 'Day 2', activity: '[서울] N서울타워 전망대 & 한강 피크닉' },
+                    { day: 'Day 3', activity: '[KTX 이동] 서울역 ➔ 부산역 (2시간 30분) / 광안리 야경' },
+                    { day: 'Day 4', activity: '[부산] 해운대 해변열차 & 해동용궁사' },
+                    { day: 'Day 5', activity: '[부산] 감천문화마을 & 자갈치시장 미식 투어' }
+                ];
+            }
+
+            document.getElementById('plan-result-title').textContent = title;
+            document.getElementById('plan-result-subtitle').textContent = subtitle;
+
+            timelineContainer.innerHTML = items.map(item => `
+                <div class="flex items-start gap-4 p-3.5 rounded-xl bg-slate-900/60 border border-slate-700/60">
+                    <span class="px-3 py-1 bg-korea-blue text-white font-bold text-xs rounded-lg shrink-0">${item.day}</span>
+                    <p class="text-xs sm:text-sm text-slate-200 leading-relaxed font-medium mt-0.5">${item.activity}</p>
+                </div>
+            `).join('');
+        }
+
+        function copyItineraryText() {
+            const title = document.getElementById('plan-result-title').textContent;
+            alert(`[일정이 복사되었습니다]\n${title}\n자세한 일정은 여행 일정표에 저장되었습니다.`);
+        }
+
+        function toggleMobileMenu() {
+            document.getElementById('mobile-menu').classList.toggle('hidden');
+        }
+
+        // Initialize Page
+        window.onload = function() {
+            setCityView('seoul');
+            renderFood();
+            generateItinerary();
+        };
+    </script>
+</body>
+</html>orea travel.html…]()
